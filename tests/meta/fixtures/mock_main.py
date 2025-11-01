@@ -1,36 +1,27 @@
 """
-Day 1: [Problem title]
+Day 0: [Problem title]
 
-https://adventofcode.com/2020/day/1
+https://adventofcode.com/2000/day/0
 """
 
-import pathlib
+from __future__ import annotations
 
-import duckdb
+import logging
+import pathlib
 
 from advent_of_code.meta import read_input
 
-HERE = pathlib.Path(__file__).parent
 
-
-def _read(file: str) -> str:
+def solution(use_sample: bool) -> list[int]:
     """
-    Read the file.
+    Solve the day 0 problem!
     """
-    return (HERE / file).read_text("utf-8")
 
-
-def solution(use_sample: bool) -> list:
-    """
-    Solve the day 1 problem!
-    """
-    file = HERE / ("sample.data" if use_sample else "input.data")
-    read_input(file)
-
-    part_1 = _read("part-1.sql").replace("{{ file }}", str(file.absolute()))
-    part_2 = _read("part-2.sql").replace("{{ file }}", str(file.absolute()))
+    logging.basicConfig(level="DEBUG")
+    file = "sample.data" if use_sample else "input.data"
+    input_ = read_input(pathlib.Path(__file__).parent / file)
 
     return [
-        duckdb.sql(part_1).fetchone()[0],
-        duckdb.sql(part_2).fetchone()[0],
+        0,
+        0,
     ]

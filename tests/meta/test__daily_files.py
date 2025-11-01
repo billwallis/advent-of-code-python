@@ -18,27 +18,13 @@ def test__files_can_be_created(
     monkeypatch: pytest.MonkeyPatch,
     tmp_path: pathlib.Path,
 ):
-    year, day = 2020, 1
+    year, day = 2000, 0
     monkeypatch.setattr(daily_files, "SOLUTIONS_ROOT", tmp_path)
     daily_files.create_files(year, day)
 
-    assert (tmp_path / f"year_{year}/day_{day:02d}").exists()
-    assert (tmp_path / f"year_{year}/day_{day:02d}/main.py").exists()
-    assert (tmp_path / f"year_{year}/day_{day:02d}/sample.data").exists()
-    assert (tmp_path / f"year_{year}/day_{day:02d}/part-1.sql").exists()
-    assert (tmp_path / f"year_{year}/day_{day:02d}/part-2.sql").exists()
+    assert (tmp_path / "year_2000/day_00").exists()
+    assert (tmp_path / "year_2000/day_00/main.py").exists()
+    assert (tmp_path / "year_2000/day_00/sample.data").exists()
 
-    main_content = (
-        (tmp_path / f"year_{year}/day_{day:02d}/main.py").read_text().strip()
-    )
+    main_content = (tmp_path / "year_2000/day_00/main.py").read_text().strip()
     assert main_content == _read_fixture("mock_main.py")
-
-    part_1_content = (
-        (tmp_path / f"year_{year}/day_{day:02d}/part-1.sql").read_text().strip()
-    )
-    assert part_1_content == _read_fixture("mock_part.sql")
-
-    part_2_content = (
-        (tmp_path / f"year_{year}/day_{day:02d}/part-2.sql").read_text().strip()
-    )
-    assert part_2_content == _read_fixture("mock_part.sql")

@@ -15,6 +15,7 @@ def _get_input(year: int, day: int) -> str:
     """
     Get the input for the given day and year.
     """
+
     return requests.get(
         f"https://adventofcode.com/{year}/day/{day}/input",
         headers={"Cookie": os.environ["AOC_SESSION_COOKIE"]},
@@ -28,6 +29,7 @@ def _parse_year_and_day(path: pathlib.Path) -> tuple[int, int]:
 
     The path should be in the form of `year/day`.
     """
+
     try:
         day = path.parent.name
         year = path.parent.parent.name
@@ -45,6 +47,7 @@ def read_input(path: pathlib.Path) -> str:
     If the file is the input file and doesn't yet exist at the location, it
     will be read from the website.
     """
+
     if not path.exists():
         if path.name == "input.data":
             text = _get_input(*_parse_year_and_day(path))
