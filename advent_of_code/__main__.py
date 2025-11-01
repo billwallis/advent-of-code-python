@@ -61,7 +61,10 @@ class Solution:
 
 
 def print_solutions(
-    year: int, day: int, print_all: bool, use_sample: bool
+    year: int,
+    day: int,
+    print_all: bool,
+    use_sample: bool,
 ) -> None:
     """
     Print the solutions.

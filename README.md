@@ -12,9 +12,9 @@
 
 ---
 
-# Advent of Code
+# Advent of Code - Python
 
-Solutions to the Advent of Code problem sets, available at:
+Python solutions to the Advent of Code problem sets, available at:
 
 - [https://adventofcode.com/](https://adventofcode.com/)
 

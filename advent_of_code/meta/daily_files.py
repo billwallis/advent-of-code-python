@@ -31,6 +31,7 @@ class FileCreator:
 
         TODO: Merge with `aoc_website` to get the data from the website.
         """
+
         self.directory.mkdir(parents=True, exist_ok=True)
         (self.directory / "sample.data").touch()
 
@@ -38,22 +39,19 @@ class FileCreator:
             loader=jinja2.FileSystemLoader(HERE / "template"),
             autoescape=True,
         )
-        params = {
-            "day": self.day,
-            "year": self.year,
-            "title": "[Problem title]",
-        }
-
-        main_file = template_env.get_template("main.py").render(**params)
+        # fmt: off
+        main_file = (
+            template_env
+                .get_template("main.py")
+                .render(day=self.day, year=self.year, title="[Problem title]")
+        )
+        # fmt: on
         (self.directory / "main.py").write_text(main_file)
-
-        part_file = template_env.get_template("part.sql").render(**params)
-        (self.directory / "part-1.sql").write_text(part_file)
-        (self.directory / "part-2.sql").write_text(part_file)
 
 
 def create_files(year: int, day: int) -> None:
     """
     Create the template files for the day.
     """
+
     FileCreator(day=day, year=year).create_files()
