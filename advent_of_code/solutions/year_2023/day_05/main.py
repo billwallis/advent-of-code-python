@@ -29,7 +29,7 @@ def _next_map(map_name: str) -> str:
     """
     assert map_name in ALMANAC_MAPS
 
-    next_map_prefix = map_name.split("-")[-1]
+    next_map_prefix = map_name.rsplit("-", maxsplit=1)[-1]
     for map_ in ALMANAC_MAPS:
         if map_.startswith(next_map_prefix):
             return map_
@@ -170,7 +170,9 @@ class Almanac:
             logging.debug(f"Using mapping {map_name}")
             map_ = self.maps[map_name]
             destination = map_.get_destination(destination)
-            logging.debug(f"{map_name.split('-')[-1]}: {destination}")
+            logging.debug(
+                f"{map_name.rsplit('-', maxsplit=1)[-1]}: {destination}"
+            )
             map_name = _next_map(map_name)
             if map_name is None:
                 break

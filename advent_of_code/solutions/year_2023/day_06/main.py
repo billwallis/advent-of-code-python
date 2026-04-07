@@ -110,7 +110,7 @@ class RaceRecord:
         """
 
         def _parse(line: str) -> list[int]:
-            return [int(x) for x in line.split(":")[-1].split()]
+            return [int(x) for x in line.rsplit(":", maxsplit=1)[-1].split()]
 
         time_text, distance_text = text.strip().splitlines()
         times, distances = _parse(time_text), _parse(distance_text)
