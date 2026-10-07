@@ -24,7 +24,7 @@ Install the dependencies:
 ```shell
 # Setup
 pip install --editable . --group dev --group test
-pre-commit install --with-hooks
+pre-commit install --install-hooks
 
 # Use the CLI
 aoc --help
