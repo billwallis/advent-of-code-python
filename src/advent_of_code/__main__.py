@@ -14,7 +14,7 @@ from typing import Any
 import arguably
 
 from advent_of_code import meta
-from advent_of_code.constants import PROJECT_ROOT, SOLUTIONS_ROOT
+from advent_of_code.constants import PACKAGE_ROOT, SOLUTIONS_ROOT
 
 
 class Solution:
@@ -39,10 +39,10 @@ class Solution:
         self.year = year
         self.path = SOLUTIONS_ROOT / f"year_{year}/day_{day:02d}"
 
-        module_path = self.path.relative_to(PROJECT_ROOT) / "main"
+        module_path = self.path.relative_to(PACKAGE_ROOT) / "main"
         module = importlib.import_module(
             str(module_path).replace(os.sep, "."),
-            str(PROJECT_ROOT),
+            str(PACKAGE_ROOT),
         )
         self.solution = module.solution
 
